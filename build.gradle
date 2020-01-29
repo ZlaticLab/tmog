@@ -1,0 +1,94 @@
+plugins {
+    id 'java'
+}
+
+group 'org.janelia.scicomp'
+version '4.4.0'
+
+sourceCompatibility = '8'
+targetCompatibility = '8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    jaxbVersion = '2.3.0'
+    moduleName = 'org.janelia.tmog'
+}
+
+dependencies {
+    compile "com.sun.activation:javax.activation:1.2.0"
+    compile "javax.xml.bind:jaxb-api:" + jaxbVersion
+    compile "com.sun.xml.bind:jaxb-core:" + jaxbVersion
+    runtime "com.sun.xml.bind:jaxb-impl:" + jaxbVersion
+
+    compile "commons-digester:commons-digester:1.8"
+    compile "commons-httpclient:commons-httpclient:3.1"
+    compile "commons-logging:commons-logging:1.1"
+    compile "com.google.code.gson:gson:2.7"
+    compile 'com.intellij:forms_rt:7.0.3'
+    compile "log4j:log4j:1.2.17"
+    compile "mysql:mysql-connector-java:5.1.22"
+    compile "net.java.dev.glazedlists:glazedlists_java15:1.8.0"
+    compile "org.jdesktop:swing-worker:1.1"
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+// stolen from https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time
+tasks.withType(Test) {
+    testLogging {
+        events "failed" // "passed", "skipped"
+        showStandardStreams true
+        showExceptions true
+        showCauses true
+        showStackTraces true
+
+        // set options for log level DEBUG and INFO
+        info.events = debug.events
+        info.exceptionFormat = debug.exceptionFormat
+
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
+        }
+    }
+}
+
+Map<String, ?> manifestAttributes = [
+        'Application-Name': 'Janelia Transmogrifier',
+        'Automatic-Module-Name': moduleName,
+        'Implementation-Title': 'org.janelia.it.ims.tmog',
+        'Implementation-Version': version,
+        'Main-Class': 'org.janelia.it.ims.tmog.JaneliaTransmogrifier'
+]
+
+jar {
+    manifest {
+        attributes(manifestAttributes)
+    }
+    
+    from { 
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } 
+    }
+
+    doLast {
+        println 'created ' + archivePath
+    }
+}
+
+task logUsefulBuildInfo {
+    doLast {
+        println "\nbuilt the following jar files:"
+        file(project.libsDir).eachFileMatch(~/.*.jar/) { file ->
+            println file.getAbsolutePath()
+        }
+    }
+}
+
+build.dependsOn(logUsefulBuildInfo)
