@@ -15,7 +15,7 @@
 
         <outputDirectory fileModeReadOnly="false">
             <!-- TODO: change base path to match file system at Cambridge -->
-            <path path="[//dm11.hhmi.org|/groups/zlatic]/zlaticlab/pipeline/screen/tracking-results/" />
+            <path path="//zstore1/zfs/zlatic_lab/pipeline/screen/tracking-results/" />
             <renameFieldValue fieldDisplayName="Tracker"/>
             <path path="/"/>
             <renameFieldValue fieldDisplayName="Line"/>
@@ -171,7 +171,7 @@
             </text>
 
             <fileExtension/>
-            
+
         </dataFields>
 
     </project>
@@ -186,7 +186,7 @@
 
         <outputDirectory fileModeReadOnly="false">
             <!-- TODO: change base path to match file system at Cambridge -->
-            <path path="[//dm11.hhmi.org|/groups/zlatic]/zlaticlab/pipeline/screen/tracking-results/" />
+            <path path="//zstore1/zfs/zlatic_lab/pipeline/screen/tracking-results/" />
             <renameFieldValue fieldDisplayName="Tracker"/>
             <path path="/"/>
             <renameFieldValue fieldDisplayName="Line"/>
@@ -323,7 +323,7 @@
 
         <outputDirectory fileModeReadOnly="false">
             <!-- TODO: change base path to match file system at Cambridge -->
-            <path path="[//dm11.hhmi.org|/groups/zlatic]/zlaticlab/pipeline/" />
+            <path path="//zstore1/zfs/zlatic_lab/pipeline/" />
             <renameFieldValue fieldDisplayName="Experiment Type"/>
             <path path="/tracking-results/" />
             <renameFieldValue fieldDisplayName="Tracker"/>
@@ -564,7 +564,7 @@
 
         <outputDirectory fileModeReadOnly="false">
             <!-- TODO: change base path to match file system at Cambridge -->
-            <path path="[//dm11.hhmi.org|/groups/zlatic]/zlaticlab/pipeline/" />
+            <path path="//zstore1/zfs/zlatic_lab/pipeline/" />
             <renameFieldValue fieldDisplayName="Experiment Type"/>
             <path path="/tracking-results/" />
             <renameFieldValue fieldDisplayName="Tracker"/>
@@ -774,7 +774,7 @@
                   prefix="_">
                 <sourceFileDefault pattern=".*#.*#.*#.*_(\d+(\.\d+)*s\d+x\d+(\.\d+)*s\d+(\.\d+)*s)@.*"/>
             </text>
-            
+
             <separator value="@"/>
 
             <number displayName="Animal Number" required="true"
@@ -805,7 +805,7 @@
 
         <outputDirectory fileModeReadOnly="false">
             <!-- TODO: change base path to match file system at Cambridge -->
-            <path path="[//dm11.hhmi.org|/groups/zlatic]/zlaticlab/pipeline/" />
+            <path path="//zstore1/zfs/zlatic_lab/pipeline/" />
             <renameFieldValue fieldDisplayName="Experiment Type"/>
             <path path="/tracking-results/" />
             <renameFieldValue fieldDisplayName="Tracker"/>
