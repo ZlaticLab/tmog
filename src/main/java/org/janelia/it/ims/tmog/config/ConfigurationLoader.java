@@ -36,6 +36,7 @@ import org.janelia.it.ims.tmog.field.TargetNameModel;
 import org.janelia.it.ims.tmog.field.TargetPropertyDefaultValue;
 import org.janelia.it.ims.tmog.field.ValidValue;
 import org.janelia.it.ims.tmog.field.ValidValueModel;
+import org.janelia.it.ims.tmog.field.ValidValueDBModel;
 import org.janelia.it.ims.tmog.field.VerifiedDateModel;
 import org.janelia.it.ims.tmog.field.VerifiedDecimalModel;
 import org.janelia.it.ims.tmog.field.VerifiedIntegerModel;
@@ -49,10 +50,12 @@ import org.janelia.it.utils.PathUtil;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
+//import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -100,6 +103,16 @@ public class ConfigurationLoader
         progressFrame.setVisible(true);
 
         this.addPropertyChangeListener(progressPanel);
+    }
+
+    public File getConfigFile() throws ConfigurationException {
+        File f;
+        try {
+            f = new File(this.configUrl.toURI());
+        } catch (URISyntaxException e) {
+            throw new ConfigurationException("Failed to parse URL '" + configUrl + "'.", e);
+        }
+        return f;
     }
 
     /**
@@ -180,6 +193,18 @@ public class ConfigurationLoader
     private void load(InputStream stream) throws ConfigurationException {
         Digester digester = new Digester();
         digester.setValidating(false);
+
+// Schemas are not being validated at the moment. The code below should make the parser (Apache Xerces's SAXParser)
+// validate the schema specified in the noNamespaceSchemaLocation (or schemaLocation) attribute, but the corresponding
+// schema validator throws some errors, and I'm not sure how to fix them.
+// TODO: Use a minimal example (with test java/xml/schema files) to figure out how to validate schemas.
+//
+//        try {
+//            digester.setValidating(true);
+//            digester.setFeature("http://apache.org/xml/features/validation/schema", true);
+//        } catch (ParserConfigurationException | SAXException e) {
+//            throw new ConfigurationException("Failed to enable schema validation.", e);
+//        }
 
         digester.addObjectCreate("transmogrifierConfiguration",
                                  ArrayList.class);
@@ -265,6 +290,8 @@ public class ConfigurationLoader
                         "addValidValue", digester);
         createSetAndAdd("*/validValueList",
                         ValidValueModel.class, digester);
+        createSetAndAdd("transmogrifierConfiguration/project/dataFields/validValueDBList",
+                        ValidValueDBModel.class, digester);
         createSetAndAdd("*/webServiceList",
                         HttpValidValueModel.class, digester);
         createSetAndAdd("*/well",

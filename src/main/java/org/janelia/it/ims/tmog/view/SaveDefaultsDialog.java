@@ -264,7 +264,7 @@ public class SaveDefaultsDialog
         dataTable = new DataTable();
         dataTable.setPreferredScrollableViewportSize(new Dimension(450, 50));
         scrollPane1.setViewportView(dataTable);
-        existingSetsComboBox = new JComboBox();
+        existingSetsComboBox = new JComboBox<String>();
         dataPanel.add(existingSetsComboBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
         final JLabel label3 = new JLabel();
         label3.setText("Existing Default Sets :");

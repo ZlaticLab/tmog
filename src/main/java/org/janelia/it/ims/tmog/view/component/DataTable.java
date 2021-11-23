@@ -23,8 +23,11 @@ import org.janelia.it.ims.tmog.field.DataFieldGroupRenderer;
 import org.janelia.it.ims.tmog.field.TargetRenderer;
 import org.janelia.it.ims.tmog.field.ValidValue;
 import org.janelia.it.ims.tmog.field.ValidValueEditor;
+import org.janelia.it.ims.tmog.field.ValidValueDBEditor;
 import org.janelia.it.ims.tmog.field.ValidValueModel;
+import org.janelia.it.ims.tmog.field.ValidValueDBModel;
 import org.janelia.it.ims.tmog.field.ValidValueRenderer;
+import org.janelia.it.ims.tmog.field.ValidValueDBRenderer;
 import org.janelia.it.ims.tmog.field.VerifiedFieldEditor;
 import org.janelia.it.ims.tmog.field.VerifiedFieldModel;
 import org.janelia.it.ims.tmog.field.VerifiedFieldRenderer;
@@ -73,6 +76,7 @@ public class DataTable extends JTable {
             FileTarget.class,
             ButtonPanel.ButtonType.class,
             ValidValueModel.class,
+            ValidValueDBModel.class,
             VerifiedFieldModel.class,
             DataFieldGroupModel.class
     };
@@ -124,6 +128,8 @@ public class DataTable extends JTable {
                                new ButtonRenderer());
             setDefaultRenderer(ValidValueModel.class,
                                new ValidValueRenderer());
+            setDefaultRenderer(ValidValueDBModel.class,
+                               new ValidValueDBRenderer());
             setDefaultRenderer(VerifiedFieldModel.class,
                                new VerifiedFieldRenderer());
             setDefaultRenderer(DataFieldGroupModel.class,
@@ -133,6 +139,8 @@ public class DataTable extends JTable {
                              new ButtonEditor());
             setDefaultEditor(ValidValueModel.class,
                              new ValidValueEditor());
+            setDefaultEditor(ValidValueDBModel.class,
+                             new ValidValueDBEditor());
             setDefaultEditor(VerifiedFieldModel.class,
                              new VerifiedFieldEditor());
             setDefaultEditor(DataFieldGroupModel.class,

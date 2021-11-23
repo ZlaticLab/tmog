@@ -14,6 +14,7 @@ import org.janelia.it.ims.tmog.field.DefaultValue;
 import org.janelia.it.ims.tmog.field.DefaultValueList;
 import org.janelia.it.ims.tmog.field.DefaultValueModel;
 import org.janelia.it.ims.tmog.field.HttpValidValueModel;
+import org.janelia.it.ims.tmog.field.ValidValueDBModel;
 import org.janelia.it.ims.tmog.field.PluginDefaultValue;
 import org.janelia.it.ims.tmog.field.TargetNameModel;
 import org.janelia.it.ims.tmog.plugin.RowListener;
@@ -279,6 +280,12 @@ public class ProjectConfiguration {
             } catch (Exception e) {
                 throw new ConfigurationException(e.getMessage(), e);
             }
+        }
+
+        if (field instanceof ValidValueDBModel) {
+            ValidValueDBModel model = (ValidValueDBModel) field;
+            model.setConfigPath(loader.getConfigFile());
+            model.readValidValuesFromDBFile();
         }
     }
 
