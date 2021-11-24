@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'edu.sc.seis.launch4j' version '2.5.1'
 }
 
 group 'org.janelia.scicomp'
@@ -80,6 +81,13 @@ jar {
     doLast {
         println 'created ' + archivePath
     }
+}
+
+launch4j {
+    outfile = '../bin/tmog.exe'
+    headerType = 'console'
+    mainClassName = 'org.janelia.it.ims.tmog.JaneliaTransmogrifier'
+    icon = '../../src/main/resources/images/tmog.ico'
 }
 
 task logUsefulBuildInfo {

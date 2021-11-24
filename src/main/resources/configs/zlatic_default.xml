@@ -14,7 +14,7 @@
         <inputFileSorter sortAlgorithm="Path"/>
 
         <outputDirectory fileModeReadOnly="false">
-            <path path="/cephfs/zlatic_lab/pipeline/screen/tracking-results/"/>
+            <path path="\\cephfs\users\zlatic_lab\pipeline\screen\tracking-results\"/>
             <renameFieldValue fieldDisplayName="Rig"/>
             <path path="/"/>
             <renameFieldValue fieldDisplayName="Drivers"/>

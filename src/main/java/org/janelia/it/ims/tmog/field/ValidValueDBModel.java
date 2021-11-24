@@ -298,7 +298,7 @@ public class ValidValueDBModel extends PlainDocument implements DataField, Defau
         boolean isValid = false;
         this.errorMessage = "";
 
-        if (!this.cachedTokens.isEmpty()) {
+        if ((this.cachedTokens != null) && (!this.cachedTokens.isEmpty())) {
             isValid = this.validateTokens(this.cachedTokens);
         } else if (this.isRequired) {
             this.errorMessage = "Please enter a value for this required field.";
