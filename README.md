@@ -3,7 +3,7 @@
 # Janelia Transmogrifier - tmog
 
 The Janelia Transmogrifier - 'tmog' - is a Java Swing application that supports the collection and 
-validation of meta data associated with files.  You can find [build instructions here](BUILD.md). 
+validation of meta data associated with files.  You can find [build instructions here](docs/BUILD.md). 
 
 ## Key Features
 
@@ -19,7 +19,27 @@ validation of meta data associated with files.  You can find [build instructions
   * Digests (default is md5) of file contents are calculated before and after transfer to ensure integrity.
 
 * Supports addition of external system plug-in components for validation and/or process integration.
- 
+
+## Usage
+
+On Windows, the easiest way to launch tmog is to use the launcher (in `build/bin/tmog.exe`). You can also create a shortcut to the launcher, or pin it to the Start menu or the taskbar.
+Alternatively, you can launch tmog from the command prompt via
+```bash
+java.exe -jar build\libs\tmog-<version>.jar [config.xml]
+```
+
+On Unix, you can launch tmog from a terminal via
+```bash
+java -jar build/libs/tmog-<version>.jar [config.xml]
+```
+
+After launching tmog, if you used the launcher (Windows-only) or if you didn't provide a path to a configuration file when launching through the jar, you'll be asked to select a configuration file.
+Once the configuration is loaded, a new window should appear, like the one in the left image below:
+
+<img src='docs/tmog_1.png' width='25'> <img src='docs/tmog_1.png' width='25'>
+
+Check that the path next to "Output Directory:" is correct before proceeding. Then, click on the "Set" button, which should be to the left of "Source File Directory:", to select the directory containing the files which will be transferred through tmog. After selecting a directory, its contents will be parsed and used to populate the table in the middle of the window (see right image above). Inspect all rows and columns to make sure all cells in the table look correct and there aren't any empty cells. But don't worry, if you try to proceed with the transfer, and any of the cells have invalid values or are empty, you'll be notified and not allowed to proceed. To start the transfer, click on the "Copy and Rename" button on the bottom left of the window. Once the transfer is complete, a new window will open with a summary of the transfer.
+
 ## Configuration
 
 The application can be configured to support multiple projects with different requirements. 

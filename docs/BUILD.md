@@ -10,11 +10,12 @@
 ### Retrieve Source Code
 
 ```bash
-git clone https://github.com/JaneliaSciComp/tmog.git
+# clone this repository
+git clone git@github.com:ZlaticLab/tmog.git
 
-# switch to jdk8-zlatic branch
+# switch to the "lmb" branch
 cd tmog
-git checkout jdk8-zlatic
+git checkout lmb
 ```
 
 
@@ -22,19 +23,21 @@ git checkout jdk8-zlatic
 
 The application can be built using gradle commands run from the base 
 directory where the tmog repository was cloned 
-(see [build.gradle](build.gradle) for details).
+(see [build.gradle](../build.gradle) for details).
 
 ```bash
 gradle build
 
 # creates:
-#   build/libs/tmog-<version>.jar
-#   build/libs_prod/tmog-<version>-prod.jar
+#     build/libs/tmog-<version>.jar
+#     build/libs_prod/tmog-<version>-prod.jar
 ```
 
-### Launch Application
+### Create Launcher (for Use on Windows)
 
 ```bash
-java -jar build/libs/tmog-<version>.jar [config.xml]
-```
+gradle createExe
 
+# creates:
+#     build/bin/tmog.exe
+```
