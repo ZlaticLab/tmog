@@ -36,7 +36,11 @@ java -jar build/libs/tmog-<version>.jar [config.xml]
 After launching tmog, if you used the launcher (Windows-only) or if you didn't provide a path to a configuration file when launching through the jar, you'll be asked to select a configuration file.
 Once the configuration is loaded, a new window should appear, like the one in the left image below:
 
-<img src='docs/tmog_1.png' width='25'> <img src='docs/tmog_1.png' width='25'>
+<p align="center">
+  <img src='docs/tmog_1.png' width='350'>
+  &emsp;&emsp;&emsp;&emsp;
+  <img src='docs/tmog_2.png' width='350'>
+</p>
 
 Check that the path next to "Output Directory:" is correct before proceeding. Then, click on the "Set" button, which should be to the left of "Source File Directory:", to select the directory containing the files which will be transferred through tmog. After selecting a directory, its contents will be parsed and used to populate the table in the middle of the window (see right image above). Inspect all rows and columns to make sure all cells in the table look correct and there aren't any empty cells. But don't worry, if you try to proceed with the transfer, and any of the cells have invalid values or are empty, you'll be notified and not allowed to proceed. To start the transfer, click on the "Copy and Rename" button on the bottom left of the window. Once the transfer is complete, a new window will open with a summary of the transfer.
 
