@@ -202,6 +202,9 @@ public abstract class VerifiedFieldModel extends PlainDocument
         String defaultValue = defaultValueList.getValue(target);
         if (defaultValue != null) {
             setText(defaultValue);
+            if (!verify()) {
+                setText("");
+            }
         } else {
             setText("");
         }
@@ -211,6 +214,9 @@ public abstract class VerifiedFieldModel extends PlainDocument
     public void applyValue(String value) {
         if (value != null) {
             setText(value);
+        }
+        if (!verify()) {
+            setText("");
         }
     }
 

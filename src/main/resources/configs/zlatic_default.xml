@@ -33,9 +33,10 @@
             <date displayName="Date"
                   required="true"
                   datePattern="yyyyMMdd">
-                <sourceFileDateDefault pattern="^(\d{8})_\d{6}@.*"
+                <sourceFileDateDefault pattern="^.*[/\\](\d{8})_\d{6}[/\\@].*"
                                        fromDatePattern="yyyyMMdd"
-                                       toDatePattern="yyyyMMdd"/>
+                                       toDatePattern="yyyyMMdd"
+                                       matchType="path"/>
             </date>
 
             <separator value="_"/>
@@ -43,9 +44,10 @@
             <date displayName="Time"
                   required="true"
                   datePattern="HHmmss">
-                <sourceFileDateDefault pattern="^\d{8}_(\d{6})@.*"
+                <sourceFileDateDefault pattern="^.*[/\\]\d{8}_(\d{6})[/\\@].*"
                                        fromDatePattern="HHmmss"
-                                       toDatePattern="HHmmss"/>
+                                       toDatePattern="HHmmss"
+                                       matchType="path"/>
             </date>
 
             <separator value="@"/>
@@ -55,7 +57,7 @@
                               DBPath="../dbs/drivers.csv"
                               separator="_"
                               validationPattern="[a-zA-Z0-9]+">
-                <sourceFileDefault pattern="^.+?@(.+?)@.*"/>
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?(.+?)@.+?@.+?@.+?@.+?@.+?\..+$"/>
             </validValueDBList>
 
             <separator value="@"/>
@@ -65,7 +67,7 @@
                               DBPath="../dbs/effectors.csv"
                               separator="_"
                               validationPattern="[a-zA-Z0-9]+">
-                <sourceFileDefault pattern="^.+?@.+?@(.+?)@.*"/>
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?.+?@(.+?)@.+?@.+?@.+?@.+?\..+$"/>
             </validValueDBList>
 
             <separator value="@"/>
@@ -73,8 +75,8 @@
             <text displayName="Rig"
                   required="true"
                   copyable="false"
-                  pattern="^(?:BC1)|(?:BC2)|(?:BO1)|(?:BO2)(?:BO3)|(?:BO4)$">
-                <sourceFileDefault pattern="^.+?@.+?@.+?@(.+?)@.*"/>
+                  pattern="^(?:BC1)|(?:BC2)|(?:BO1)|(?:BO2)|(?:BO3)|(?:BO4)$">
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?.+?@.+?@(.+?)@.+?@.+?@.+?\..+$"/>
             </text>
 
             <separator value="@"/>
@@ -84,7 +86,7 @@
                               DBPath="../dbs/stimulus_types.csv"
                               separator="#"
                               validationPattern="^[a-z](?=_)">
-                <sourceFileDefault pattern="^.+?@.+?@.+?@.+?@(.+?)@.*"/>
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?.+?@.+?@.+?@(.+?)@.+?@.+?\..+$"/>
             </validValueDBList>
 
             <separator value="@"/>
@@ -93,13 +95,13 @@
                               required="true"
                               DBPath="../dbs/experiment_types.csv"
                               validationPattern="^[a-z]+(?=_?)">
-                <sourceFileDefault pattern="^.+?@.+?@.+?@.+?@.+?@(.+?)@.*"/>
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?.+?@.+?@.+?@.+?@(.+?)@.+?\..+$"/>
             </validValueDBList>
 
             <separator value="@"/>
 
             <text displayName="Suffix" required="true" copyable="false" pattern="^_?\d{5}k$">
-                <sourceFileDefault pattern=".*@(.+?)\..+$"/>
+                <sourceFileDefault pattern="^(?:\d{8}_\d{6}@)?.+?@.+?@.+?@.+?@.+?@(.+?)\..+$"/>
             </text>
 
             <fileExtension/>
